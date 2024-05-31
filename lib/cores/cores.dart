@@ -6,6 +6,7 @@ import 'package:intl/intl.dart';
 
 part 'constants/assets.dart';
 part 'extensions/build_context.dart';
+part 'extensions/datetime.dart';
 part 'extensions/int.ext.dart';
 part 'extensions/string.dart';
 part 'extensions/text_style.dart';

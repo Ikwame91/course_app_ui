@@ -1,4 +1,6 @@
-part of component;
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_english_course/cores/cores.dart';
 
 class UserInfo extends StatelessWidget {
   const UserInfo({
@@ -56,7 +58,8 @@ class UserInfo extends StatelessWidget {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Text(title!, style: titleStyle ?? p15.grey),
-                      if (subtitle != null) Text(subtitle!, style: subtitleStyle ?? p11.grey),
+                      if (subtitle != null)
+                        Text(subtitle!, style: subtitleStyle ?? p11.grey),
                     ],
                   ),
                 ),

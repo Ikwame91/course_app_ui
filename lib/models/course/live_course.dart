@@ -28,7 +28,7 @@ class LiveCourse extends Course {
   //   };
   // }
 
-  factory LiveCourse.fromMap(Map<String, dynamic> json) {
+  factory LiveCourse.fromJson(Map<String, dynamic> json) {
     return LiveCourse(
       id: int.tryParse(json["id"].toString()) ?? 0,
       title: json["title"],
