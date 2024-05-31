@@ -1,9 +1,16 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
+import 'package:flutter_english_course/components/buttons/app_rounded_buttorn.dart';
 import 'package:flutter_english_course/components/cards/live_courses_card.dart';
+import 'package:flutter_english_course/components/common/user_info.dart';
 import 'package:flutter_english_course/components/components.dart';
 import 'package:flutter_english_course/cores/cores.dart';
 import 'package:flutter_english_course/dummies/live_courses_dummy.dart';
 import 'package:flutter_english_course/models/course/live_course.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
+import 'package:transparent_image/transparent_image.dart';
 
 class LiveCoursesView extends StatefulWidget {
   static const String routeName = '/live-courses';
@@ -85,13 +92,147 @@ class _LiveCoursesViewState extends State<LiveCoursesView> {
                     final item = liveCourses[index];
                     return LiveCourseCard(
                       item: item,
-                      onPressed: () {},
+                      onPressed: () {
+                        showAnimatedDialog(
+                            context: context,
+                            animationType: DialogTransitionType.slideFromBottom,
+                            curve: Curves.ease,
+                            barrierColor: Colors.black.withOpacity(0.8),
+                            builder: (_) => AppointmentDialog(
+                                  item: item,
+                                ));
+                      },
                     );
                   },
                 ),
               )
             ],
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class AppointmentDialog extends StatelessWidget {
+  const AppointmentDialog({super.key, required this.item});
+  final LiveCourse item;
+  @override
+  Widget build(BuildContext context) {
+    const radius = 20.0;
+    final width = context.screenWidth * 0.9;
+    return Material(
+      type: MaterialType.transparency,
+      child: Center(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Ink(
+              width: width,
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(radius)),
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: 200.0,
+                    width: width,
+                    child: CachedNetworkImage(
+                      imageUrl: item.imageUrl,
+                      errorWidget: (context, url, error) => const SizedBox(),
+                      imageBuilder: (context, imageProvider) {
+                        return ClipRRect(
+                          borderRadius: const BorderRadius.vertical(
+                              top: Radius.circular(radius)),
+                          child: FadeInImage(
+                            placeholder: MemoryImage(kTransparentImage),
+                            image: imageProvider,
+                            fit: BoxFit.cover,
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(17.0),
+                    child: Column(
+                      children: [
+                        Text(
+                          item.title.overflow,
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 3,
+                          style: p22.bold,
+                        ),
+                        const SizedBox(
+                          height: 17,
+                        ),
+                        Row(
+                          children: [
+                            Flexible(
+                                child: UserInfo(
+                              onPressed: () {},
+                              title: item.teacher.name,
+                              titleStyle: p16.grey,
+                              avatarURL: item.teacher.avatarURL,
+                            )),
+                            Row(
+                              children: [
+                                const Icon(
+                                  Icons.watch_later_outlined,
+                                  color: AppColors.grey,
+                                ),
+                                const SizedBox(
+                                  width: 6,
+                                ),
+                                Text(
+                                  item.liveTime.toDoMonthFormat().toLowerCase(),
+                                  style: p16.grey,
+                                ),
+                              ],
+                            )
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 8, bottom: 17),
+                    child: AppRoundedButton(
+                      onpressed: () => context.pop(),
+                      label: "Appointment Now",
+                      icon: Padding(
+                        padding: const EdgeInsets.only(right: 4),
+                        child: SvgPicture.asset(
+                          Assets.iconsSVG.premium,
+                          height: 20,
+                          width: 20,
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  IconButton(
+                      onPressed: () {
+                        context.maybePop();
+                      },
+                      icon: Container(
+                        padding: const EdgeInsets.all(4),
+                        decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            border:
+                                Border.all(color: AppColors.white, width: 2)),
+                        child: const Icon(
+                          Icons.close_rounded,
+                          color: AppColors.white,
+                          size: 20,
+                        ),
+                      ))
+                ],
+              ),
+            )
+          ],
         ),
       ),
     );

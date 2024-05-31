@@ -3,7 +3,7 @@ import 'package:flutter_english_course/models/course/course.dart';
 import 'package:flutter_english_course/models/course/teacher.dart';
 
 class LiveCourse extends Course {
-  final String liveStreamingUrl;
+  final String liveStreamingURL;
   final String liveDuration;
   final DateTime liveTime;
 
@@ -14,7 +14,7 @@ class LiveCourse extends Course {
       required super.level,
       required super.imageUrl,
       required super.teacher,
-      required this.liveStreamingUrl,
+      required this.liveStreamingURL,
       required this.liveDuration,
       required this.liveTime,
       super.countStudents = 0,
@@ -37,7 +37,7 @@ class LiveCourse extends Course {
       imageUrl: json["imageUrl"],
       teacher: Teacher.fromJson(json["teacher"]),
       liveTime: DateTime.parse(json["liveTime"].toString()),
-      liveStreamingUrl: json["liveStreamingUrl"],
+      liveStreamingURL: json["liveStreamingURL"] ?? "",
       liveDuration: json["liveDuration"],
       countStudents: int.tryParse(json["countStudents"].toString()) ?? 0,
       createdAt: DateTime.parse(json["createdAt"].toString()).toLocal(),
