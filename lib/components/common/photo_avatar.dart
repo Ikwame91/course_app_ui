@@ -26,7 +26,6 @@ class PhotoAvatar extends StatelessWidget {
   final Color? color;
   final bool? isWideProgress;
 
-  @override
   Widget emptyPhoto(BuildContext context) {
     return Hero(
       tag: "empty-avatar${heroTag ?? Random().nextInt(100).toString()}",

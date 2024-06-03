@@ -1,6 +1,8 @@
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart' hide Badge;
+import 'package:flutter_english_course/components/cards/premium_card.dart';
 import 'package:flutter_english_course/components/common/photo_avatar.dart';
+import 'package:flutter_english_course/components/components.dart';
 import 'package:flutter_english_course/cores/cores.dart';
 import 'package:flutter_english_course/dummies/users_dummy.dart';
 import 'package:flutter_english_course/models/user/user.dart';
@@ -36,7 +38,16 @@ class _ProfileViewState extends State<ProfileView> {
           physics: const ClampingScrollPhysics(),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [ProfileHeader(user: user)],
+            children: [
+              ProfileHeader(user: user),
+              const SizedBox(height: 20),
+              const PremiumCard(),
+              LearnedCard(
+                currentLearned: 4,
+                targetLearned: 23,
+                onPressed: () {},
+              )
+            ],
           )),
     );
   }
