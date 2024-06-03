@@ -86,7 +86,8 @@ class LearnedCard extends StatelessWidget {
                             const SizedBox(width: 10),
                             Text(
                               'minute',
-                              style: context.theme.textTheme.headlineSmall?.copyWith(
+                              style: context.theme.textTheme.headlineSmall
+                                  ?.copyWith(
                                 fontSize: 22,
                               ),
                             ),

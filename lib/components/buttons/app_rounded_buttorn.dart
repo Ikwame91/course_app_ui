@@ -63,7 +63,7 @@ class AppRoundedButton extends StatelessWidget {
                 label,
                 style: labelstyle ??
                     TextStyle(
-                        fontSize: 10,
+                        fontSize: 18,
                         fontWeight: FontWeight.bold,
                         color: labelColor ??
                             (colorButton.computeLuminance() >= 0.5

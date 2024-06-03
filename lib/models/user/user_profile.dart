@@ -9,6 +9,10 @@ class UserProfile {
   final String? avatarURL;
   final DateTime? updatedAt;
 
+  String get fullname {
+    return "$firstname ${lastname ?? ""}".trim();
+  }
+
   UserProfile({
     required this.firstname,
     this.lastname,
