@@ -81,7 +81,8 @@ class _BottomNavigationTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final backgroundColor = item.backgroundColor ?? context.theme.colorScheme.primary;
+    final backgroundColor =
+        item.backgroundColor ?? context.theme.colorScheme.primary;
 
     int size;
     Widget label;
@@ -110,19 +111,25 @@ class _BottomNavigationTile extends StatelessWidget {
                 ),
                 containedInkWell: true,
                 onTap: onTap,
-                splashColor: ink ? inkColor ?? Theme.of(context).splashColor : Colors.transparent,
+                splashColor: ink
+                    ? inkColor ?? Theme.of(context).splashColor
+                    : Colors.transparent,
                 highlightColor: Colors.transparent,
                 child: Container(
                   height: 48,
                   decoration: BoxDecoration(
-                      color: selected ? backgroundColor.withOpacity(opacity) : Colors.transparent,
+                      color: selected
+                          ? backgroundColor.withOpacity(opacity)
+                          : Colors.transparent,
                       borderRadius: const BorderRadius.horizontal(
                         right: Radius.circular(50),
                         left: Radius.circular(50),
                       )),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: selected ? MainAxisAlignment.spaceEvenly : MainAxisAlignment.center,
+                    mainAxisAlignment: selected
+                        ? MainAxisAlignment.spaceEvenly
+                        : MainAxisAlignment.center,
                     mainAxisSize: MainAxisSize.max,
                     children: <Widget>[
                       _TileIcon(
@@ -140,7 +147,9 @@ class _BottomNavigationTile extends StatelessWidget {
                         sizeCurve: Curves.fastOutSlowIn,
                         firstCurve: Curves.fastOutSlowIn,
                         secondCurve: Curves.fastOutSlowIn.flipped,
-                        crossFadeState: selected ? CrossFadeState.showFirst : CrossFadeState.showSecond,
+                        crossFadeState: selected
+                            ? CrossFadeState.showFirst
+                            : CrossFadeState.showSecond,
                       )
                     ],
                   ),
@@ -176,7 +185,8 @@ class _TileIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final iconColor = item.iconColor ?? Colors.black54;
-    final backgroundColor = item.backgroundColor ?? context.theme.colorScheme.primary;
+    final backgroundColor =
+        item.backgroundColor ?? context.theme.colorScheme.primary;
 
     return Align(
       alignment: Alignment.topCenter,
@@ -231,7 +241,8 @@ class _Label extends StatelessWidget {
   }
 }
 
-class BottomNavigationBarState extends State<AppBottomBar> with TickerProviderStateMixin {
+class BottomNavigationBarState extends State<AppBottomBar>
+    with TickerProviderStateMixin {
   late List<AnimationController> _controllers = <AnimationController>[];
   late List<CurvedAnimation> _animations;
   Color? _backgroundColor;
@@ -244,7 +255,9 @@ class BottomNavigationBarState extends State<AppBottomBar> with TickerProviderSt
   void didChangeDependencies() {
     super.didChangeDependencies();
     geometryListenable = Scaffold.geometryOf(context);
-    _flexTween = widget.hasNotch ? Tween<double>(begin: 1.15, end: 2.0) : Tween<double>(begin: 1.15, end: 1.75);
+    _flexTween = widget.hasNotch
+        ? Tween<double>(begin: 1.15, end: 2.0)
+        : Tween<double>(begin: 1.15, end: 1.75);
   }
 
 //  Animatable<double> _flexTween = widget.hasNotch ? Tween<double>(begin: 1.15, end: 2.0) : Tween<double>(begin: 1.15, end: 1.75);
@@ -254,13 +267,15 @@ class BottomNavigationBarState extends State<AppBottomBar> with TickerProviderSt
       controller.dispose();
     }
 
-    _controllers = List<AnimationController>.generate(widget.items.length, (int index) {
+    _controllers =
+        List<AnimationController>.generate(widget.items.length, (int index) {
       return AnimationController(
         duration: const Duration(milliseconds: 200),
         vsync: this,
       )..addListener(_rebuild);
     });
-    _animations = List<CurvedAnimation>.generate(widget.items.length, (int index) {
+    _animations =
+        List<CurvedAnimation>.generate(widget.items.length, (int index) {
       return CurvedAnimation(
         parent: _controllers[index],
         curve: Curves.fastOutSlowIn,
@@ -289,7 +304,8 @@ class BottomNavigationBarState extends State<AppBottomBar> with TickerProviderSt
     super.dispose();
   }
 
-  double _evaluateFlex(Animation<double> animation) => _flexTween!.evaluate(animation);
+  double _evaluateFlex(Animation<double> animation) =>
+      _flexTween!.evaluate(animation);
 
   @override
   void didUpdateWidget(AppBottomBar oldWidget) {
@@ -316,14 +332,16 @@ class BottomNavigationBarState extends State<AppBottomBar> with TickerProviderSt
         _resetState();
       }
     } else {
-      if (_backgroundColor != widget.items[widget.currentIndex!].backgroundColor) {
+      if (_backgroundColor !=
+          widget.items[widget.currentIndex!].backgroundColor) {
         _backgroundColor = widget.items[widget.currentIndex!].backgroundColor;
       }
     }
   }
 
   List<Widget> _createTiles() {
-    final MaterialLocalizations localizations = MaterialLocalizations.of(context);
+    final MaterialLocalizations localizations =
+        MaterialLocalizations.of(context);
     final List<Widget> children = <Widget>[];
     for (int i = 0; i < widget.items.length; i += 1) {
       children.add(
@@ -338,7 +356,8 @@ class BottomNavigationBarState extends State<AppBottomBar> with TickerProviderSt
           },
           flex: _evaluateFlex(_animations[i]),
           selected: i == widget.currentIndex,
-          indexLabel: localizations.tabLabel(tabIndex: i + 1, tabCount: widget.items.length),
+          indexLabel: localizations.tabLabel(
+              tabIndex: i + 1, tabCount: widget.items.length),
           ink: widget.hasInk,
           inkColor: widget.inkColor,
           padding: widget.tilesPadding,
@@ -367,12 +386,15 @@ class BottomNavigationBarState extends State<AppBottomBar> with TickerProviderSt
         horizontal: 10,
       ),
       child: ConstrainedBox(
-        constraints: BoxConstraints(minHeight: kBottomNavigationBarHeight + additionalBottomPadding),
+        constraints: BoxConstraints(
+            minHeight: kBottomNavigationBarHeight + additionalBottomPadding),
         child: Material(
           type: MaterialType.transparency,
           child: Padding(
             padding: EdgeInsets.only(
-                bottom: additionalBottomPadding, right: widget.fabLocation == AppBottomBarFabLocation.end ? 72 : 0),
+                bottom: additionalBottomPadding,
+                right:
+                    widget.fabLocation == AppBottomBarFabLocation.end ? 72 : 0),
             child: MediaQuery.removePadding(
               context: context,
               removeBottom: true,
@@ -388,7 +410,8 @@ class BottomNavigationBarState extends State<AppBottomBar> with TickerProviderSt
   Widget build(BuildContext context) {
     assert(debugCheckHasDirectionality(context));
     assert(debugCheckHasMaterialLocalizations(context));
-    final double additionalBottomPadding = math.max(MediaQuery.of(context).padding.bottom - _kBottomMargin, 0.0);
+    final double additionalBottomPadding =
+        math.max(MediaQuery.of(context).padding.bottom - _kBottomMargin, 0.0);
     return Semantics(
         explicitChildNodes: true,
         child: widget.hasNotch
@@ -456,6 +479,8 @@ class _BubbleBottomBarClipper extends CustomClipper<Path> {
 
   @override
   bool shouldReclip(_BubbleBottomBarClipper oldClipper) {
-    return oldClipper.geometry != geometry || oldClipper.shape != shape || oldClipper.notchMargin != notchMargin;
+    return oldClipper.geometry != geometry ||
+        oldClipper.shape != shape ||
+        oldClipper.notchMargin != notchMargin;
   }
 }
