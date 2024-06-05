@@ -9,7 +9,6 @@ import 'package:flutter_english_course/cores/cores.dart';
 import 'package:flutter_english_course/dummies/live_courses_dummy.dart';
 import 'package:flutter_english_course/models/course/live_course.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:go_router/go_router.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 class LiveCoursesView extends StatefulWidget {
@@ -198,7 +197,7 @@ class AppointmentDialog extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(top: 8, bottom: 17),
                     child: AppRoundedButton(
-                      onpressed: () => context.pop(),
+                      onpressed: () => context.maybePop(),
                       label: "Appointment Now",
                       icon: Padding(
                         padding: const EdgeInsets.only(right: 4),
