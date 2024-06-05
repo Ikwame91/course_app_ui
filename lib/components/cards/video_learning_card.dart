@@ -41,10 +41,10 @@ class VideoLearningCard extends StatelessWidget {
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(radius),
-            boxShadow: [
+            boxShadow: const [
               BoxShadow(
-                color: Colors.grey[300]!,
-                blurRadius: 1.5,
+                color: Colors.black,
+                blurRadius: 3,
               ),
             ],
           ),
@@ -60,7 +60,8 @@ class VideoLearningCard extends StatelessWidget {
                       errorWidget: (context, url, error) => const SizedBox(),
                       imageBuilder: (context, assetProvider) {
                         return ClipRRect(
-                          borderRadius: const BorderRadius.vertical(top: Radius.circular(radius)),
+                          borderRadius: const BorderRadius.vertical(
+                              top: Radius.circular(radius)),
                           child: FadeInImage(
                             placeholder: MemoryImage(kTransparentImage),
                             image: assetProvider,
@@ -99,7 +100,8 @@ class VideoLearningCard extends StatelessWidget {
                           size: 18,
                         ),
                         const SizedBox(width: 4),
-                        Text(countPlays.toAbbreviatedString(), style: textInVideoStyle),
+                        Text(countPlays.toAbbreviatedString(),
+                            style: textInVideoStyle),
                       ],
                     ),
                   ),

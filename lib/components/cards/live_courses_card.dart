@@ -30,10 +30,10 @@ class LiveCourseCard extends StatelessWidget {
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(radius),
-          boxShadow: [
+          boxShadow: const [
             BoxShadow(
-              color: Colors.grey[200]!,
-              blurRadius: 3,
+              color: Colors.black,
+              blurRadius: 5,
             )
           ],
         ),
@@ -91,7 +91,7 @@ class LiveCourseCard extends StatelessWidget {
                             onPressed: () {},
                             title: item.teacher.name,
                             avatarURL: item.teacher.avatarURL,
-                            maxRadius: 10,
+                            maxRadius: 15,
                           ),
                         ),
                         Expanded(
@@ -119,7 +119,7 @@ class LiveCourseCard extends StatelessWidget {
                             color: context.theme.primaryColor,
                             borderRadius: BorderRadius.circular(5)),
                         child: Text(
-                          item.liveDuration.toString().toLowerCase(),
+                          item.liveTime.toStringByFormat("dd-MM h:mm a"),
                           style: const TextStyle(color: Colors.white),
                         ),
                       ),
@@ -130,7 +130,7 @@ class LiveCourseCard extends StatelessWidget {
                         padding: const EdgeInsets.symmetric(
                             horizontal: 10, vertical: 4.5),
                         decoration: BoxDecoration(
-                          color: Colors.grey[100],
+                          color: Colors.grey[200],
                           borderRadius: BorderRadius.circular(5),
                         ),
                         child: Center(

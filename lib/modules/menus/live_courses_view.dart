@@ -85,7 +85,7 @@ class _LiveCoursesViewState extends State<LiveCoursesView> {
                       const EdgeInsets.only(left: 15, right: 15, bottom: 10),
                   shrinkWrap: true,
                   separatorBuilder: (context, index) => const SizedBox(
-                    height: 17,
+                    height: 25,
                   ),
                   itemCount: liveCourses.length,
                   itemBuilder: (context, index) {

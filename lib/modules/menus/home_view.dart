@@ -15,7 +15,15 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
-  final tabItems = <String>['Recommend', 'Hot', 'Movies', 'Story Telling', 'Traveling', 'Business', 'Grammar'];
+  final tabItems = <String>[
+    'Recommend',
+    'Hot',
+    'Movies',
+    'Story Telling',
+    'Traveling',
+    'Business',
+    'Grammar'
+  ];
   late final selectedTabNotifier = ValueNotifier<String>(tabItems.first);
   final learningsNotifier = ValueNotifier<List<Learning>>([]);
 
@@ -82,7 +90,7 @@ class _HomeViewState extends State<HomeView> {
                 sliver: SliverToBoxAdapter(
                   child: LearnedCard(
                     onPressed: () {},
-                    currentLearned: 3,
+                    currentLearned: 6,
                     targetLearned: 10,
                   ),
                 ),
@@ -140,12 +148,14 @@ class _HomeTabBar extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 15),
           children: items.map(
             (item) {
-              bool isActivated = currentItem.toString().toLowerCase() == item.toLowerCase();
+              bool isActivated =
+                  currentItem.toString().toLowerCase() == item.toLowerCase();
               return GestureDetector(
                 onTap: () => onChanged(item),
                 child: AnimatedContainer(
                   duration: const Duration(milliseconds: 450),
-                  padding: const EdgeInsets.only(bottom: 4.0, right: 15, left: 15),
+                  padding:
+                      const EdgeInsets.only(bottom: 4.0, right: 15, left: 15),
                   margin: const EdgeInsets.symmetric(horizontal: 2.0),
                   decoration: BoxDecoration(
                     color: !isActivated ? null : context.theme.primaryColor,

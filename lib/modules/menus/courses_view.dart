@@ -31,7 +31,8 @@ class _CoursesViewState extends State<CoursesView> {
     final now = DateTime.now();
     final categories = categoriesJSON.map((e) => Category.fromJson(e));
     final courses = videoCoursesJSON.map((e) => VideoCourse.fromJson(e));
-    final newCourses = courses.where((e) => now.difference(e.createdAt).inDays < 17);
+    final newCourses =
+        courses.where((e) => now.difference(e.createdAt).inDays < 17);
     final popularCourses = courses.where((e) => e.countStudents > 17000);
 
     this.categories
@@ -127,7 +128,7 @@ class _MenuButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const radius = 17.00;
+    const radius = 20.00;
 
     return Column(
       children: [
@@ -177,6 +178,8 @@ class _NewCoursesListView extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20.0),
             child: SubHeader(
+              actionIcon: Icons.arrow_forward_ios,
+              actionIconPosition: ActionIconPosition.end,
               title: 'New Courses',
               onPressed: () {},
             ),

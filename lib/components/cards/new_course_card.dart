@@ -16,7 +16,8 @@ class NewCourseCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const TextStyle textInVideoStyle = TextStyle(color: Colors.white, fontSize: 16);
+    const TextStyle textInVideoStyle =
+        TextStyle(color: Colors.white, fontSize: 16);
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 7),
@@ -26,7 +27,7 @@ class NewCourseCard extends StatelessWidget {
           children: [
             SizedBox(
               height: 300,
-              width: 205,
+              width: 220,
               child: CachedNetworkImage(
                 imageUrl: imageUrl,
                 errorWidget: (context, url, error) => const SizedBox(),
@@ -67,9 +68,12 @@ class NewCourseCard extends StatelessWidget {
               top: 12,
               child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 2),
-                decoration: BoxDecoration(color: Colors.amber, borderRadius: BorderRadius.circular(15)),
+                decoration: BoxDecoration(
+                    color: Colors.green,
+                    borderRadius: BorderRadius.circular(15)),
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 2).copyWith(top: 1, bottom: 4),
+                  padding: const EdgeInsets.symmetric(horizontal: 2)
+                      .copyWith(top: 1, bottom: 4),
                   child: Text('new', style: p15.white),
                 ),
               ),
@@ -92,7 +96,9 @@ class NewCourseCard extends StatelessWidget {
               bottom: 12,
               child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 2),
-                decoration: BoxDecoration(color: Colors.black38, borderRadius: BorderRadius.circular(15)),
+                decoration: BoxDecoration(
+                    color: Colors.black38,
+                    borderRadius: BorderRadius.circular(15)),
                 child: Row(
                   children: [
                     const Icon(
@@ -101,7 +107,8 @@ class NewCourseCard extends StatelessWidget {
                       size: 18,
                     ),
                     const SizedBox(width: 4),
-                    Text(countPlays.toAbbreviatedString(), style: textInVideoStyle),
+                    Text(countPlays.toAbbreviatedString(),
+                        style: textInVideoStyle),
                   ],
                 ),
               ),

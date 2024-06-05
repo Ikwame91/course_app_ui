@@ -49,21 +49,6 @@ class UserInfo extends StatelessWidget {
                 backgroundImage: imageProvider,
               ),
             ),
-            if (title != null)
-              Flexible(
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 10),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text(title!, style: titleStyle ?? p15.grey),
-                      if (subtitle != null)
-                        Text(subtitle!, style: subtitleStyle ?? p11.grey),
-                    ],
-                  ),
-                ),
-              ),
           ],
         ),
       ),

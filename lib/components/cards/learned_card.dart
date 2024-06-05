@@ -18,6 +18,8 @@ class LearnedCard extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(right: 18, left: 18, bottom: 20, top: 8),
       child: InkWell(
+        highlightColor: Colors.blue,
+        hoverColor: Colors.green,
         onTap: onPressed,
         borderRadius: borderRadius,
         child: Ink(
@@ -26,9 +28,9 @@ class LearnedCard extends StatelessWidget {
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: borderRadius,
-            boxShadow: [
+            boxShadow: const [
               BoxShadow(
-                color: Colors.grey[200]!,
+                color: Colors.black,
                 blurRadius: 10,
               ),
             ],
@@ -40,7 +42,7 @@ class LearnedCard extends StatelessWidget {
                 width: 65,
                 height: 65,
                 decoration: BoxDecoration(
-                  color: const Color(0xFF2F80ED).withOpacity(0.3),
+                  color: Colors.blue,
                   borderRadius: BorderRadius.circular(17),
                 ),
                 child: SvgPicture.asset(
@@ -102,8 +104,8 @@ class LearnedCard extends StatelessWidget {
                 padding: 0,
                 currentStep: currentLearned,
                 totalSteps: targetLearned,
-                selectedStepSize: 3.7,
-                unselectedStepSize: 3.7,
+                selectedStepSize: 7.7,
+                unselectedStepSize: 7.7,
                 width: 60,
                 height: 60,
                 unselectedColor: const Color(0xFFEEF0F3),

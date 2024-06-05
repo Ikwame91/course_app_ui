@@ -13,7 +13,7 @@ class DotContainer extends StatelessWidget {
         width: 3,
         height: 3,
         decoration: const BoxDecoration(
-          color: AppColors.grey,
+          color: AppColors.darkGrey,
           shape: BoxShape.circle,
         ),
       ),
