@@ -43,12 +43,18 @@ class MyCourseCard extends StatelessWidget {
           ),
           SizedBox(
             width: context.screenWidth,
-            child: Row(
-              children: courses
-                  .take(2)
-                  .map((item) => buildMyCourses(context,
-                      imageUrl: item.imageUrl, onpressed: () {}))
-                  .toList(),
+            child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: courses
+                    .take(courses.length > 5 ? 5 : courses.length)
+                    .map((item) => buildMyCourses(
+                          context,
+                          imageUrl: item.imageUrl,
+                          onpressed: () {},
+                        ))
+                    .toList(),
+              ),
             ),
           ),
           const SizedBox(

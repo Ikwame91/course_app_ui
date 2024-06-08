@@ -34,7 +34,26 @@ class ItemListCard extends StatelessWidget {
                 color: AppColors.grey,
               ),
             ),
-            const Expanded(child: Padding(padding: EdgeInsets.all(20)))
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(name, style: p20.bold.grey),
+                    if (data != null)
+                      Text(
+                        data!,
+                        style: const TextStyle(
+                          fontSize: 29,
+                          color: AppColors.grey,
+                        ),
+                      ),
+                  ],
+                ),
+              ),
+            ),
+            if (trailing != null) trailing!,
           ],
         ),
       ),

@@ -1,5 +1,6 @@
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart' hide Badge;
+import 'package:flutter_english_course/components/cards/item_list_card.dart';
 import 'package:flutter_english_course/components/cards/my_course_card.dart';
 import 'package:flutter_english_course/components/cards/premium_card.dart';
 import 'package:flutter_english_course/components/common/photo_avatar.dart';
@@ -10,6 +11,7 @@ import 'package:flutter_english_course/dummies/video_courses_dummy.dart';
 import 'package:flutter_english_course/models/course/video_course.dart';
 import 'package:flutter_english_course/models/user/user.dart';
 import 'package:line_icons/line_icons.dart';
+import 'package:share_plus/share_plus.dart';
 
 class ProfileView extends StatefulWidget {
   static const String routeName = '/profile';
@@ -32,7 +34,7 @@ class _ProfileViewState extends State<ProfileView> {
   Future<void> loadData() async {
     user = usersJSON
         .map((e) => User.fromJson(e))
-        .firstWhere((element) => element.uid == "qwerty123");
+        .firstWhere((element) => element.uid == "qwerty456");
     myCourses
       ..clear()
       ..addAll(videoCoursesJSON.reversed.map((e) => VideoCourse.fromJson(e)));
@@ -44,7 +46,7 @@ class _ProfileViewState extends State<ProfileView> {
       child: SingleChildScrollView(
           physics: const ClampingScrollPhysics(),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               ProfileHeader(user: user),
               const SizedBox(height: 20),
@@ -54,7 +56,8 @@ class _ProfileViewState extends State<ProfileView> {
                 targetLearned: 23,
                 onPressed: () {},
               ),
-              MyCourseCard(courses: myCourses)
+              MyCourseCard(courses: myCourses),
+              const _MenuButton()
             ],
           )),
     );
@@ -119,7 +122,7 @@ class ProfileHeader extends StatelessWidget {
           ),
           Expanded(
             child: Padding(
-              padding: const EdgeInsets.all(18.0),
+              padding: const EdgeInsets.all(45.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -163,6 +166,92 @@ class ProfileHeader extends StatelessWidget {
                 )),
           )
         ],
+      ),
+    );
+  }
+}
+
+class _MenuButton extends StatefulWidget {
+  const _MenuButton();
+
+  @override
+  State<_MenuButton> createState() => __MenuButtonState();
+}
+
+class __MenuButtonState extends State<_MenuButton> {
+  final lightModeNotifier = ValueNotifier<bool>(false);
+  @override
+  void dispose() {
+    lightModeNotifier.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(
+        bottom: 20,
+        right: 20,
+        left: 20,
+      ),
+      child: Ink(
+        padding: const EdgeInsets.symmetric(vertical: 10),
+        decoration: BoxDecoration(
+            color: Colors.white, borderRadius: BorderRadius.circular(20)),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 18),
+              child: Text(
+                'Other',
+                style: p20.bold,
+              ),
+            ),
+            ItemListCard(
+              onpressed: () =>
+                  lightModeNotifier.value = !lightModeNotifier.value,
+              icon: LineIcons.sunAlt,
+              name: "Light Mode",
+              iconSize: 27,
+              trailing: SizedBox(
+                height: 17,
+                child: ValueListenableBuilder<bool>(
+                  valueListenable: lightModeNotifier,
+                  builder: (_, lightmodel, __) {
+                    return Switch.adaptive(
+                      value: lightmodel,
+                      onChanged: (value) {
+                        lightModeNotifier.value = value;
+                      },
+                    );
+                  },
+                ),
+              ),
+            ),
+            ItemListCard(
+              onpressed: () =>
+                  Share.share("Please Subscribe with Us : \nhttps://bit.ly/"),
+              icon: LineIcons.gift,
+              name: "Invite Friends",
+            ),
+            ItemListCard(
+              onpressed: () {},
+              icon: LineIcons.userShield,
+              name: " User Agreement",
+            ),
+            ItemListCard(
+              onpressed: () {},
+              icon: LineIcons.questionCircleAlt,
+              name: "Help and FeedBack",
+            ),
+            ItemListCard(
+              onpressed: () {},
+              icon: LineIcons.cog,
+              name: "Settings",
+            )
+          ],
+        ),
       ),
     );
   }

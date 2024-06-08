@@ -209,28 +209,27 @@ class AppointmentDialog extends StatelessWidget {
                       ),
                     ),
                   ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  IconButton(
-                      onPressed: () {
-                        context.maybePop();
-                      },
-                      icon: Container(
-                        padding: const EdgeInsets.all(4),
-                        decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            border:
-                                Border.all(color: AppColors.white, width: 2)),
-                        child: const Icon(
-                          Icons.close_rounded,
-                          color: AppColors.white,
-                          size: 20,
-                        ),
-                      ))
                 ],
               ),
-            )
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            IconButton(
+                onPressed: () {
+                  context.maybePop();
+                },
+                icon: Container(
+                  padding: const EdgeInsets.all(4),
+                  decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      border: Border.all(color: Colors.white, width: 2)),
+                  child: const Icon(
+                    Icons.close_rounded,
+                    color: AppColors.white,
+                    size: 20,
+                  ),
+                ))
           ],
         ),
       ),
