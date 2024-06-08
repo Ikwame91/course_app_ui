@@ -57,7 +57,8 @@ class _ProfileViewState extends State<ProfileView> {
                 onPressed: () {},
               ),
               MyCourseCard(courses: myCourses),
-              const _MenuButton()
+              const _MenuButton(),
+              const ActionButton()
             ],
           )),
     );
@@ -252,6 +253,44 @@ class __MenuButtonState extends State<_MenuButton> {
             )
           ],
         ),
+      ),
+    );
+  }
+}
+
+class ActionButton extends StatelessWidget {
+  const ActionButton({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.only(bottom: 17),
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      child: Row(
+        children: [
+          Expanded(
+            child: ElevatedButton.icon(
+                onPressed: () async {},
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.red,
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 36, vertical: 13),
+                    elevation: 0.3,
+                    textStyle: const TextStyle(
+                        fontSize: 21,
+                        fontWeight: FontWeight.w500,
+                        color: AppColors.white)),
+                icon: const Icon(
+                  LineIcons.alternateSignOut,
+                  size: 27,
+                  color: AppColors.white,
+                ),
+                label: Text(
+                  'Sign Out',
+                  style: p21.white,
+                )),
+          )
+        ],
       ),
     );
   }

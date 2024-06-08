@@ -45,7 +45,7 @@ class ItemListCard extends StatelessWidget {
                       Text(
                         data!,
                         style: const TextStyle(
-                          fontSize: 29,
+                          fontSize: 14,
                           color: AppColors.grey,
                         ),
                       ),
